@@ -6,4 +6,11 @@ let cliente = {
     hambre: 80
 };
 
+// Creando funcion ordenar comida
+
+function ordenarComida(cliente) {
+    console.log(cliente.nombre + " está ordenando comida ");
+
+    cliente.hambre = cliente.hambre - 30;
+}
 
