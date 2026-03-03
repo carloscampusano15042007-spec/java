@@ -1,5 +1,5 @@
+// Creamos la batalla de superman y goku
 
-// Creamos la ballata de superman y goku
 // VARIABLES
 let vidaHeroe = 100;
 let energiaHeroe = 50;
@@ -33,68 +33,35 @@ function recargarEnergia() {
     console.log("Energía del héroe:", energiaHeroe);
 }
 
-//creamos una funcion para que el heroe recupere vida
+// ⭐ FUNCIÓN 1
 function escudoMagico() {
-    energiaHeroe = energiaHeroe + 20;
-    console.log("El heroe gana 20 de su vida con este escudo magico:");
-    console.log("Energia del heroe:", energiaHeroe);
+    vidaHeroe = vidaHeroe + 20;
+    console.log("✨ Escudo mágico activado.");
+    console.log("Vida del héroe:", vidaHeroe);
 }
+
+// ⭐ FUNCIÓN 2
+function superAtaque() {
+    if (energiaHeroe >= 20) {
+        vidaVillano = vidaVillano - 40;
+        energiaHeroe = energiaHeroe - 20;
+        console.log("💥 SUPER ATAQUE activado!");
+        console.log("Vida del villano:", vidaVillano);
+    } else {
+        console.log("No hay energía suficiente para el super ataque.");
+    }
+}
+
 
 // SIMULACIÓN DE BATALLA
-
-console.log("¡Comienza la batalla! ");
-
-ataque();
-defender();
-ataque();
-recargarEnergia();
-superAtaque();
-escudoMagico();
-ataque();
-
-console.log("Fin de la batalla");
-
-// 🔹 VARIABLES
-let heroe = "Superman";
-let villano = "Batman";
-
-let energiaHeroe = 100;
-let energiaVillano = 100;
-
-// 🔹 FUNCIONES
-
-function ataque() {
-    console.log("⚔️ " + heroe + " ataca a " + villano);
-    energiaVillano = energiaVillano - 20;
-    console.log("Energía de " + villano + ": " + energiaVillano);
-}
-
-function defender() {
-    console.log("🛡️ " + villano + " se defiende");
-    energiaVillano = energiaVillano + 10;
-    console.log("Energía de " + villano + ": " + energiaVillano);
-}
-
-function recargarEnergia() {
-    console.log("🔋 " + heroe + " recarga energía");
-    energiaHeroe = energiaHeroe + 15;
-    console.log("Energía de " + heroe + ": " + energiaHeroe);
-}
-
-// ⭐ FUNCIÓN ESPECIAL — Estudiante A
-function superAtaque() {
-    energiaVillano -= 40;
-    console.log("💥 SUPER ATAQUE activado. Energía villano:", energiaVillano);
-}
-
-// 🔹 SIMULACIÓN DE BATALLA
 
 console.log("🔥 INICIA LA BATALLA 🔥");
 
 ataque();
 defender();
 recargarEnergia();
+superAtaque();   // ✅ ahora sí funciona
+escudoMagico();  // ✅ ahora sí funciona
 ataque();
-superAtaque();
 
 console.log("🏁 FIN DE LA BATALLA");
