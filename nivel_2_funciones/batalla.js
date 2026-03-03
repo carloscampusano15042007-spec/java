@@ -32,6 +32,12 @@ function recargarEnergia() {
     console.log("Energía del héroe:", energiaHeroe);
 }
 
+//creamos una funcion para que el heroe recupere vida
+function escudoMagico() {
+    energiaHeroe = energiaHeroe + 20;
+    console.log("El heroe gana 20 de su vida con este escudo magico:");
+    console.log("Energia del heroe:", energiaHeroe);
+}
 
 // SIMULACIÓN DE BATALLA
 
@@ -41,6 +47,8 @@ ataque();
 defender();
 ataque();
 recargarEnergia();
+superAtaque();
+escudoMagico();
 ataque();
 
 console.log("Fin de la batalla");
