@@ -8,13 +8,19 @@ let villano = "Venom";
 
 
 console.log("Nombre: " + nombre);
-console.log("Edad: " + edad);
-console.log("Poder: " + poder);
-console.log("Energia:" + energia);
-console.log("Villano: " + villano);
-
 
 // Creando historia de nuestro heroe2
 let historia = "Superman tiene 25 años y esta defendiendo la ciudad de Nueva York de Venom";
 console.log(historia);
+
+//modificando variables
+edad = 22;
+poder = "Fuerza sobrehumana y sentido aracnido";
+energia = 90;
+villano = "Duende Verde";
+
+console.log("edad:" + edad);
+console.log("poder :" + poder);
+console.log("energia :" + energia);
+console.log("villano :" + villano);
 
