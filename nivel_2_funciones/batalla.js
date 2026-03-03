@@ -25,6 +25,12 @@ function recargarEnergia() {
     console.log("Energía de " + heroe + ": " + energiaHeroe);
 }
 
+// ⭐ FUNCIÓN ESPECIAL — Estudiante A
+function superAtaque() {
+    energiaVillano -= 40;
+    console.log("💥 SUPER ATAQUE activado. Energía villano:", energiaVillano);
+}
+
 // 🔹 SIMULACIÓN DE BATALLA
 
 console.log("🔥 INICIA LA BATALLA 🔥");
@@ -33,5 +39,6 @@ ataque();
 defender();
 recargarEnergia();
 ataque();
+superAtaque();
 
 console.log("🏁 FIN DE LA BATALLA");
