@@ -10,7 +10,9 @@ console.log("poder: " + poder);
 console.log("energia: " + energia);
 console.log("villano: " + villano);
 
+
 let historia = "Superman es un héroe que lucha contra el mal, tiene 30 años, su poder es la super fuerza, se enfrenta a su enemigo llamado Batman";
+historia = "superman es un heroe que lucha contra el mal, tiene 30 años, su poder es la super fuerza, se enfrenta a su enemigo llamado batman";
 console.log("historia: " + historia);
 
 // Modificando variables
@@ -23,5 +25,4 @@ console.log("edad: " + edad);
 console.log("poder: " + poder);
 console.log("energia: " + energia);
 console.log("villano: " + villano);
-
 
