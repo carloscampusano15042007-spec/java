@@ -12,3 +12,7 @@ function ordenarComida(cliente) {
 
 }
 
+function pagar(cliente) {
+    console.log(cliente.nombre + "esta pagando la comida");
+    cliente.dinero = cliente.dinero - 10;
+}
