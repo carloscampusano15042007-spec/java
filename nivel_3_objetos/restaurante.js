@@ -19,3 +19,17 @@ function pagar(cliente) {
     cliente.dinero = cliente.dinero - 15;
 
 }
+
+function estadoCliente(cliente) {
+    console.log("-----------ESTADO CLIENTE -----------");
+    console.log("nombre:" + cliente.nombre);
+    console.log("dinero:" + cliente.dinero);
+    console.log("hambre:" + cliente.hambre);
+    console.log("----------VUELVA PRONTO, MUCHAS GRACIAS -----------");
+}
+
+//Mostramos el estado del cliente despues de ordenar comida y pagar
+
+ordenarComida(cliente);
+pagar(cliente);
+estadoCliente(cliente);
