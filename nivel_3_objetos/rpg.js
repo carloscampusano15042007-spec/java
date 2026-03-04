@@ -9,3 +9,8 @@ function atacar(objetivo) {
     console.log(jugador.nombre + " ataca con fuerza de " + jugador.fuerza);
     objetivo.vida = objetivo.vida - jugador.fuerza;
 }
+
+function curar() {
+    jugador.vida = jugador.vida + 10;
+    console.log(jugador.nombre + " se cura. Vida actual: " + jugador.vida);
+}
