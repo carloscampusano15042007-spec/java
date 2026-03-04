@@ -14,3 +14,11 @@ function curar() {
     jugador.vida = jugador.vida + 10;
     console.log(jugador.nombre + " se cura. Vida actual: " + jugador.vida);
 }
+
+function subirNivel() {
+    jugador.nivel = jugador.nivel + 1;
+    jugador.fuerza = jugador.fuerza + 5;
+    jugador.vida = jugador.vida + 20;
+
+    console.log(jugador.nombre + " subió a nivel " + jugador.nivel);
+}
