@@ -5,9 +5,16 @@ let jugador = {
     nivel: 1
 };
 
+let enemigo = {
+    nombre: "Daniela",
+    vida: 80,
+    fuerza: 15
+};
+
 function atacar(objetivo) {
     console.log(jugador.nombre + " ataca con fuerza de " + jugador.fuerza);
     objetivo.vida = objetivo.vida - jugador.fuerza;
+    console.log("Vida del enemigo: " + objetivo.vida);
 }
 
 function curar() {
@@ -22,3 +29,11 @@ function subirNivel() {
 
     console.log(jugador.nombre + " subió a nivel " + jugador.nivel);
 }
+
+console.log("=== INICIO DEL RPG ===");
+
+atacar(enemigo);
+curar();
+subirNivel();
+
+console.log("Estado final del jugador:", jugador);
