@@ -6,8 +6,7 @@ let cliente = {
     hambre: 80
 };
 
-
-//Creamos las funciones
+// Creando funcion ordenar comida
 
 function ordenarComida(cliente) {
     console.log(cliente.nombre + " está ordenando comida ");
@@ -16,24 +15,21 @@ function ordenarComida(cliente) {
 }
 
 function pagar(cliente) {
-    console.log(cliente.nombre + " está pagando");
+    console.log(cliente.nombre + " esta pagando la comida");
+    cliente.dinero = cliente.dinero - 15;
 
-    cliente.dinero = cliente.dinero - 20;
 }
 
-function mostrarEstado(cliente) {
-    console.log("---- ESTADO DEL CLIENTE ----");
-    console.log("Nombre:", cliente.nombre);
-    console.log("Dinero:", cliente.dinero);
-    console.log("Hambre:", cliente.hambre);
+function estadoCliente(cliente) {
+    console.log("-----------ESTADO CLIENTE -----------");
+    console.log("nombre:" + cliente.nombre);
+    console.log("dinero:" + cliente.dinero);
+    console.log("hambre:" + cliente.hambre);
+    console.log("----------VUELVA PRONTO, MUCHAS GRACIAS -----------");
 }
 
-
-// SIMULACIÓN
-
-mostrarEstado(cliente);
+//Mostramos el estado del cliente despues de ordenar comida y pagar
 
 ordenarComida(cliente);
 pagar(cliente);
-
-mostrarEstado(cliente);
+estadoCliente(cliente);
