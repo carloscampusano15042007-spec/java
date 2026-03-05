@@ -36,8 +36,10 @@ function curar() {
 }
 
 function subirNivel() {
-    console.log("Subiendo nivel al jugador: " + jugador.nivel);
+
     jugador.nivel = jugador.nivel + 1;
+
+    console.log("Subiendo nivel al jugador: " + jugador.nivel);
 
 }
 
