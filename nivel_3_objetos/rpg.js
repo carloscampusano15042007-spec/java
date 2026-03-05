@@ -8,6 +8,13 @@ let jugador = {
 
 }
 
+function atacar(jugador) {
+    console.log(jugador.nombre + " esta atacando");
+    jugador.vida = jugador.vida - 10;
+    console.log("vida del jugador: " + jugador.vida);
+}
+
+
 
 
 
