@@ -8,6 +8,13 @@ let jugador = {
 
 }
 
+let enemigo = {
+    nombre: "Dani",
+    vida: "100",
+    fuerza: "50",
+    nivel: "1"
+}
+
 function atacar() {
     console.log(jugador.nombre + " esta atacando");
     jugador.vida = jugador.vida - 10;
@@ -15,7 +22,7 @@ function atacar() {
 }
 
 function curar() {
-    console.log("Curando al jugador: " + jugador.vida);
+
     jugador.vida = jugador.vida + 10;
     console.log("Curando al jugador: " + jugador.vida);
 
@@ -24,10 +31,16 @@ function curar() {
 function subirNivel() {
     console.log("Subiendo nivel al jugador: " + jugador.nivel);
     jugador.nivel = jugador.nivel + 1;
-    console.log("Subiendo nivel al jugador: " + jugador.nivel);
+
 }
 
+// Mostramos el estado del jugador 
 
+console.log("-----------INICIA LA PARTIDA DEL JUGADOR -----------");
+atacar();
+curar();
+subirNivel();
+console.log("-----------FIN DEL JUEGO -----------");
 
 
 
