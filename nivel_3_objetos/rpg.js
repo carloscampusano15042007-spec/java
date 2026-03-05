@@ -14,6 +14,12 @@ function atacar(jugador) {
     console.log("vida del jugador: " + jugador.vida);
 }
 
+function vida(jugador) {
+    console.log("vida del jugador: " + jugador.vida);
+    jugador.vida = jugador.vida + 10;
+    console.log("vida del jugador: " + jugador.vida);
+
+}
 
 
 
