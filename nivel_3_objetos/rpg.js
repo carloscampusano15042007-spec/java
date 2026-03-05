@@ -10,9 +10,9 @@ let jugador = {
 
 let enemigo = {
     nombre: "Dani",
-    vida: "100",
-    fuerza: "50",
-    nivel: "1"
+    vida: 100,
+    fuerza: 50,
+    nivel: 1
 }
 
 
