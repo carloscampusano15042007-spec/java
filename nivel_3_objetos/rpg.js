@@ -10,3 +10,7 @@ let jugador = {
 
 
 
+
+
+
+
