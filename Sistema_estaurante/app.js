@@ -21,7 +21,7 @@ function renderMenu() {
     for (let i = 0; i < menu.length; i++) {
         const plato = menu[i];
         html += `<li>${plato.nombre} — S/ ${plato.precio} — Stock: ${plato.stock}</li>`;
-        total += plato.precio; // sumar el precio de cada plato por su stock
+        total += plato.precio * plato.stock; // sumar el precio de cada plato por su stock
     }
 
     html += "</ul>";
@@ -46,7 +46,3 @@ document.getElementById("btnAgregar").addEventListener("click", () => {
     renderMenu();
 });
 
-document.getElementById("btnComprar").addEventListener("click", () => {
-    comprarPlato();
-    renderMenu();
-});
