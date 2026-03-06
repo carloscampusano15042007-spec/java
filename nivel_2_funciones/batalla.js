@@ -1,44 +1,67 @@
-// 🔹 VARIABLES
-let heroe = "Superman";
-let villano = "Batman";
+// Creamos la batalla de superman y goku
 
-let energiaHeroe = 100;
-let energiaVillano = 100;
+// VARIABLES
+let vidaHeroe = 100;
+let energiaHeroe = 50;
 
-// 🔹 FUNCIONES
+let vidaVillano = 100;
+let energiaVillano = 50;
+
+
+// FUNCIONES
 
 function ataque() {
-    console.log("⚔️ " + heroe + " ataca a " + villano);
-    energiaVillano = energiaVillano - 20;
-    console.log("Energía de " + villano + ": " + energiaVillano);
+    if (energiaHeroe >= 10) {
+        vidaVillano = vidaVillano - 20;
+        energiaHeroe = energiaHeroe - 10;
+        console.log("El héroe ataca!");
+        console.log("Vida del villano:", vidaVillano);
+    } else {
+        console.log("El héroe no tiene energía para atacar.");
+    }
 }
 
 function defender() {
-    console.log("🛡️ " + villano + " se defiende");
-    energiaVillano = energiaVillano + 10;
-    console.log("Energía de " + villano + ": " + energiaVillano);
+    energiaHeroe = energiaHeroe + 10;
+    console.log("El héroe se defiende y recupera energía.");
+    console.log("Energía del héroe:", energiaHeroe);
 }
 
 function recargarEnergia() {
-    console.log("🔋 " + heroe + " recarga energía");
-    energiaHeroe = energiaHeroe + 15;
-    console.log("Energía de " + heroe + ": " + energiaHeroe);
+    energiaHeroe = energiaHeroe + 20;
+    console.log("El héroe recarga energía.");
+    console.log("Energía del héroe:", energiaHeroe);
 }
 
-// ⭐ FUNCIÓN ESPECIAL — Estudiante A
+// ⭐ FUNCIÓN 1
+function escudoMagico() {
+    vidaHeroe = vidaHeroe + 20;
+    console.log("✨ Escudo mágico activado.");
+    console.log("Vida del héroe:", vidaHeroe);
+}
+
+// ⭐ FUNCIÓN 2
 function superAtaque() {
-    energiaVillano -= 40;
-    console.log("💥 SUPER ATAQUE activado. Energía villano:", energiaVillano);
+    if (energiaHeroe >= 20) {
+        vidaVillano = vidaVillano - 40;
+        energiaHeroe = energiaHeroe - 20;
+        console.log("💥 SUPER ATAQUE activado!");
+        console.log("Vida del villano:", vidaVillano);
+    } else {
+        console.log("No hay energía suficiente para el super ataque.");
+    }
 }
 
-// 🔹 SIMULACIÓN DE BATALLA
+
+// SIMULACIÓN DE BATALLA
 
 console.log("🔥 INICIA LA BATALLA 🔥");
 
 ataque();
 defender();
 recargarEnergia();
+superAtaque();   // ✅ ahora sí funciona
+escudoMagico();  // ✅ ahora sí funciona
 ataque();
-superAtaque();
 
 console.log("🏁 FIN DE LA BATALLA");
