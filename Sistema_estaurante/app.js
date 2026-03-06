@@ -25,6 +25,10 @@ function renderMenu() {
     output.innerHTML = html;
 }
 
+function comprarPlato() {
+    console.log("El cliente compro un plato" + menu.nombre);
+}
+
 // 3) FUNCIÓN: agregar un plato demo al menú
 function agregarPlatoDemo() {
 
@@ -39,5 +43,10 @@ document.getElementById("btnMostrar").addEventListener("click", () => {
 
 document.getElementById("btnAgregar").addEventListener("click", () => {
     agregarPlatoDemo();
+    renderMenu();
+});
+
+document.getElementById("btnComprar").addEventListener("click", () => {
+    comprarPlato();
     renderMenu();
 });
