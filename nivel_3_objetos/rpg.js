@@ -9,6 +9,7 @@ let enemigo = {
     nombre: "Daniela",
     vida: 80,
     fuerza: 15
+
 };
 
 function atacar(objetivo) {
