@@ -25,7 +25,6 @@ function renderMenu() {
     }
 
     html += "</ul>";
-    html += `<p><strong>Total: S/ ${total}</strong></p>`;
     output.innerHTML = html;
 }
 
