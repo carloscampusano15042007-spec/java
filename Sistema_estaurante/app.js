@@ -15,18 +15,18 @@ function renderMenu() {
 
     // crear una lista HTML simple
     let html = "<ul>";
+    let total = 0;
+
 
     for (let i = 0; i < menu.length; i++) {
         const plato = menu[i];
         html += `<li>${plato.nombre} — S/ ${plato.precio} — Stock: ${plato.stock}</li>`;
+        total += plato.precio; // sumar el precio de cada plato por su stock
     }
 
     html += "</ul>";
+    html += `<p><strong>Total: S/ ${total}</strong></p>`;
     output.innerHTML = html;
-}
-
-function comprarPlato() {
-    console.log("El cliente compro un plato" + menu.nombre);
 }
 
 // 3) FUNCIÓN: agregar un plato demo al menú
