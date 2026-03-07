@@ -46,11 +46,12 @@ function agregarPlatoDemo() {
 // crear funcion renderLista
 function renderLista(titulo, listadeplatos) {
     const output = document.getElementById("output");
-    let html = '<h3>Platos</h3><ul>';
+    let html = `<h3>${titulo}</h3><ul>`;
     listadeplatos.forEach(plato => {
         html += `<li>${plato}</li>`;
     });
-    html += '</ul>';
+    html += "</ul>";
+
     output.innerHTML = html;
 }
 //buscar plato por su nombre usando find
@@ -94,8 +95,6 @@ function resumenMenu() {
 
 //Mostrar el resumen
 
-console.log("Resumen del menú:");
-console.log(obtenerResumenMenu());
 
 // VENDER PLATO 
 
@@ -121,7 +120,7 @@ function venderPlato(nombre, cantidad) {
 
     renderMenu();
 }
-console.log(venderPlato());
+
 
 // 4) EVENTOS: conectar botones con funciones
 document.getElementById("btnMostrar").addEventListener("click", () => {
