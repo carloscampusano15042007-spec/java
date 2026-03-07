@@ -73,7 +73,20 @@ function filtrarStockBajo() {
     console.log(filtrarStockBajo());
 
 }
+// RESUMEN DEL MENU (MAP)
+function obtenerResumenMenu() {
 
+    const resumen = platos.map(plato => {
+        return plato.nombre + " - S/ " + plato.precio;
+
+    });
+
+    return resumen;
+}
+//Mostrar el resumen
+
+console.log("Resumen del menú:");
+console.log(obtenerResumenMenu());
 
 // 4) EVENTOS: conectar botones con funciones
 document.getElementById("btnMostrar").addEventListener("click", () => {
