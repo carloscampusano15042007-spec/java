@@ -44,6 +44,16 @@ function agregarPlatoDemo() {
 
 }
 
+function renderLista() {
+    const output = document.getElementById("output");
+    let html = '<h3>Lista de platos</h3><ul>';
+    listadeplatos.forEach(plato => {
+        html += `<li>${plato}</li>`;
+    });
+    html += '</ul>';
+    output.innerHTML = html;
+}
+
 // 4) EVENTOS: conectar botones con funciones
 document.getElementById("btnMostrar").addEventListener("click", () => {
     renderMenu();
