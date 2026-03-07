@@ -53,6 +53,19 @@ function renderLista() {
     html += '</ul>';
     output.innerHTML = html;
 }
+//buscar plato por su nombre usando find
+function buscarplatopornombre(nombre) {
+    const plato = menu.find(plato => plato.nombre.toLocaleLowerCase());
+    if (!plato) {
+        renderLista("resultado de busqueda ", ["no encontrado"]);
+        return;
+    }
+    const texto = '${plato.nombre} - S/ ${plato.precio} - Stock: ${plato.stock}';
+    renderLista("resultado de busqueda ", [texto]);
+
+
+
+}
 
 // 4) EVENTOS: conectar botones con funciones
 document.getElementById("btnMostrar").addEventListener("click", () => {
