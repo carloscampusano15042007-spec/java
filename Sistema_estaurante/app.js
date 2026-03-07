@@ -4,7 +4,7 @@ let menu = [
     { nombre: "Lomo saltado", precio: 18, stock: 3 },
     { nombre: "Sopa", precio: 8, stock: 10 },
     { nombre: "Aji de gallina", precio: 11, stock: 6 },
-    { nombre: "Ceviche", precio: 15, stock: 4 }
+    { nombre: "Causa", precio: 15, stock: 4 }
 
 ];
 
@@ -15,21 +15,113 @@ function renderMenu() {
 
     // crear una lista HTML simple
     let html = "<ul>";
+    let total = 0;
+
 
     for (let i = 0; i < menu.length; i++) {
         const plato = menu[i];
         html += `<li>${plato.nombre} — S/ ${plato.precio} — Stock: ${plato.stock}</li>`;
+        total += plato.stock; // sumar cuantos platos hay en total
     }
 
     html += "</ul>";
     output.innerHTML = html;
 }
 
+
+
+function contarplatos() {
+    let totalplatos = menu.reduce((total, plato) => total + plato.stock, 0);
+    console.log("Total de platos: " + totalplatos);
+    const total = document.getElementById("total");
+    total.innerHTML = `Total de platos: ${totalplatos}`;
+}
 // 3) FUNCIÓN: agregar un plato demo al menú
 function agregarPlatoDemo() {
-    const nuevoPlato = { nombre: "Pollo a la brasa", precio: 20, stock: 4 };
+
+    const nuevoPlato = { nombre: "Ceviche", precio: 35, stock: 10 };
     menu.push(nuevoPlato);
+
 }
+// crear funcion renderLista
+function renderLista(titulo, listadeplatos) {
+    const output = document.getElementById("output");
+    let html = '<h3>Platos</h3><ul>';
+    listadeplatos.forEach(plato => {
+        html += `<li>${plato}</li>`;
+    });
+    html += '</ul>';
+    output.innerHTML = html;
+}
+//buscar plato por su nombre usando find
+function buscarplatopornombre(nombre) {
+
+    const plato = menu.find(p =>
+        p.nombre.toLowerCase() === nombre.toLowerCase()
+    );
+
+    if (!plato) {
+        renderLista("Resultado de búsqueda", ["No encontrado"]);
+        return;
+    }
+
+    const texto = `${plato.nombre} - S/ ${plato.precio} - Stock: ${plato.stock}`;
+
+    renderLista("Resultado de búsqueda", [texto]);
+}
+
+//Funcion para filtrar stockbajo
+function filtrarStockBajo() {
+
+    const resultado = menu.filter(plato => plato.stock <= 3);
+
+    const lista = resultado.map(plato =>
+        `${plato.nombre} - Stock: ${plato.stock}`
+    );
+
+    renderLista("Platos con stock bajo", lista);
+}
+
+// RESUMEN DEL MENU (MAP)
+function resumenMenu() {
+
+    const resumen = menu.map(plato =>
+        `${plato.nombre} - S/ ${plato.precio}`
+    );
+
+    renderLista("Resumen del menú", resumen);
+}
+
+//Mostrar el resumen
+
+console.log("Resumen del menú:");
+console.log(obtenerResumenMenu());
+
+// VENDER PLATO 
+
+function venderPlato(nombre, cantidad) {
+
+    const plato = menu.find(p =>
+        p.nombre.toLowerCase() === nombre.toLowerCase()
+    );
+
+    if (!plato) {
+        alert("Plato no existe");
+        return;
+    }
+
+    if (plato.stock < cantidad) {
+        alert("Stock insuficiente");
+        return;
+    }
+
+    plato.stock -= cantidad;
+
+    alert("Venta realizada");
+
+    renderMenu();
+}
+console.log(venderPlato());
 
 // 4) EVENTOS: conectar botones con funciones
 document.getElementById("btnMostrar").addEventListener("click", () => {
@@ -39,4 +131,25 @@ document.getElementById("btnMostrar").addEventListener("click", () => {
 document.getElementById("btnAgregar").addEventListener("click", () => {
     agregarPlatoDemo();
     renderMenu();
+});
+
+document.getElementById("btnContar").addEventListener("click", () => {
+    contarplatos();
+    renderMenu();
+});
+
+document.getElementById("btnResumen").addEventListener("click", () => {
+    resumenMenu();
+
+});
+
+document.getElementById("btnStockBajo").addEventListener("click", () => {
+    filtrarStockBajo();
+
+});
+
+document.getElementById("btnBuscar").addEventListener("click", () => {
+    const nombre = document.getElementById("inputBuscar").value;
+    buscarplatopornombre(nombre);
+
 });
