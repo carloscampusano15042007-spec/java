@@ -88,6 +88,32 @@ function obtenerResumenMenu() {
 console.log("Resumen del menú:");
 console.log(obtenerResumenMenu());
 
+// VENDER PLATO 
+
+function venderPlato(nombre, cantidad) {
+
+    const plato = menu.find(p =>
+        p.nombre.toLowerCase() === nombre.toLowerCase()
+    );
+
+    if (!plato) {
+        alert("Plato no existe");
+        return;
+    }
+
+    if (plato.stock < cantidad) {
+        alert("Stock insuficiente");
+        return;
+    }
+
+    plato.stock -= cantidad;
+
+    alert("Venta realizada");
+
+    renderMenu();
+}
+console.log(venderPlato());
+
 // 4) EVENTOS: conectar botones con funciones
 document.getElementById("btnMostrar").addEventListener("click", () => {
     renderMenu();
@@ -103,3 +129,16 @@ document.getElementById("btnContar").addEventListener("click", () => {
     renderMenu();
 });
 
+document.getElementById("btnResumen").addEventListener("click", () => {
+    obtenerResumenMenu();
+    renderMenu();
+});
+document.getElementById("btnStockBajo").addEventListener("click", () => {
+    filtrarStockBajo();
+    renderMenu();
+});
+
+document.getElementById("btnBuscar").addEventListener("click", () => {
+    buscarplatopornombre();
+    renderMenu();
+});
