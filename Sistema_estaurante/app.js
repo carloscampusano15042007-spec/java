@@ -63,9 +63,17 @@ function buscarplatopornombre(nombre) {
     const texto = '${plato.nombre} - S/ ${plato.precio} - Stock: ${plato.stock}';
     renderLista("resultado de busqueda ", [texto]);
 
+}
 
+//Funcion para filtrar stockbajo
+function filtrarStockBajo() {
+    let resultado = platos.filter(plato => plato.stock <= 3);
+    renderLista("Stock bajo", resultado);
+    console.log("Platos con stock bajo:", resultado);
+    console.log(filtrarStockBajo());
 
 }
+
 
 // 4) EVENTOS: conectar botones con funciones
 document.getElementById("btnMostrar").addEventListener("click", () => {
