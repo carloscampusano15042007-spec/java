@@ -43,10 +43,10 @@ function agregarPlatoDemo() {
     menu.push(nuevoPlato);
 
 }
-
-function renderLista() {
+// crear funcion renderLista
+function renderLista(titulo, listadeplatos) {
     const output = document.getElementById("output");
-    let html = '<h3>Lista de platos</h3><ul>';
+    let html = '<h3>Platos</h3><ul>';
     listadeplatos.forEach(plato => {
         html += `<li>${plato}</li>`;
     });
@@ -55,34 +55,43 @@ function renderLista() {
 }
 //buscar plato por su nombre usando find
 function buscarplatopornombre(nombre) {
-    const plato = menu.find(plato => plato.nombre.toLocaleLowerCase());
+
+    const plato = menu.find(p =>
+        p.nombre.toLowerCase() === nombre.toLowerCase()
+    );
+
     if (!plato) {
-        renderLista("resultado de busqueda ", ["no encontrado"]);
+        renderLista("Resultado de búsqueda", ["No encontrado"]);
         return;
     }
-    const texto = '${plato.nombre} - S/ ${plato.precio} - Stock: ${plato.stock}';
-    renderLista("resultado de busqueda ", [texto]);
 
+    const texto = `${plato.nombre} - S/ ${plato.precio} - Stock: ${plato.stock}`;
+
+    renderLista("Resultado de búsqueda", [texto]);
 }
 
 //Funcion para filtrar stockbajo
 function filtrarStockBajo() {
-    let resultado = platos.filter(plato => plato.stock <= 3);
-    renderLista("Stock bajo", resultado);
-    console.log("Platos con stock bajo:", resultado);
-    console.log(filtrarStockBajo());
 
+    const resultado = menu.filter(plato => plato.stock <= 3);
+
+    const lista = resultado.map(plato =>
+        `${plato.nombre} - Stock: ${plato.stock}`
+    );
+
+    renderLista("Platos con stock bajo", lista);
 }
+
 // RESUMEN DEL MENU (MAP)
-function obtenerResumenMenu() {
+function resumenMenu() {
 
-    const resumen = platos.map(plato => {
-        return plato.nombre + " - S/ " + plato.precio;
+    const resumen = menu.map(plato =>
+        `${plato.nombre} - S/ ${plato.precio}`
+    );
 
-    });
-
-    return resumen;
+    renderLista("Resumen del menú", resumen);
 }
+
 //Mostrar el resumen
 
 console.log("Resumen del menú:");
@@ -130,15 +139,17 @@ document.getElementById("btnContar").addEventListener("click", () => {
 });
 
 document.getElementById("btnResumen").addEventListener("click", () => {
-    obtenerResumenMenu();
-    renderMenu();
+    resumenMenu();
+
 });
+
 document.getElementById("btnStockBajo").addEventListener("click", () => {
     filtrarStockBajo();
-    renderMenu();
+
 });
 
 document.getElementById("btnBuscar").addEventListener("click", () => {
-    buscarplatopornombre();
-    renderMenu();
+    const nombre = document.getElementById("inputBuscar").value;
+    buscarplatopornombre(nombre);
+
 });
