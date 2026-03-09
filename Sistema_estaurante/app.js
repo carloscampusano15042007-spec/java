@@ -10,22 +10,41 @@ let menu = [
 
 // 2) FUNCIÓN: renderizar (mostrar) el menú en pantalla
 function renderMenu() {
-    const output = document.getElementById("output");
-    output.innerHTML = ""; // limpiar
 
-    // crear una lista HTML simple
+    const output = document.getElementById("output");
+    output.innerHTML = "";
+
     let html = "<ul>";
     let total = 0;
 
-
     for (let i = 0; i < menu.length; i++) {
+
         const plato = menu[i];
-        html += `<li>${plato.nombre} — S/ ${plato.precio} — Stock: ${plato.stock}</li>`;
-        total += plato.stock; // sumar cuantos platos hay en total
+
+        let clase = "";
+
+        // lógica de estado
+        if (plato.stock == 0) {
+            clase = "agotado";
+        }
+        else if (plato.stock <= 3) {
+            clase = "bajo";
+        }
+        else {
+            clase = "normal";
+        }
+
+        html += <li class="${clase}">
+            ${plato.nombre} - S/ ${plato.precio} - Stock: ${plato.stock}
+        </li>;
+
+        total += plato.stock;
     }
 
     html += "</ul>";
+
     output.innerHTML = html;
+
 }
 
 
