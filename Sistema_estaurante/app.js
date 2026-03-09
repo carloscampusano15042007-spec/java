@@ -10,22 +10,41 @@ let menu = [
 
 // 2) FUNCIÓN: renderizar (mostrar) el menú en pantalla
 function renderMenu() {
-    const output = document.getElementById("output");
-    output.innerHTML = ""; // limpiar
 
-    // crear una lista HTML simple
+    const output = document.getElementById("output");
+    output.innerHTML = "";
+
     let html = "<ul>";
     let total = 0;
 
-
     for (let i = 0; i < menu.length; i++) {
+
         const plato = menu[i];
-        html += `<li>${plato.nombre} — S/ ${plato.precio} — Stock: ${plato.stock}</li>`;
-        total += plato.stock; // sumar cuantos platos hay en total
+
+        let clase = "";
+
+        // lógica de estado
+        if (plato.stock == 0) {
+            clase = "agotado";
+        }
+        else if (plato.stock <= 3) {
+            clase = "bajo";
+        }
+        else {
+            clase = "normal";
+        }
+
+        html += <li class="${clase}">
+            ${plato.nombre} - S/ ${plato.precio} - Stock: ${plato.stock}
+        </li>;
+
+        total += plato.stock;
     }
 
     html += "</ul>";
+
     output.innerHTML = html;
+
 }
 
 
@@ -46,11 +65,12 @@ function agregarPlatoDemo() {
 // crear funcion renderLista
 function renderLista(titulo, listadeplatos) {
     const output = document.getElementById("output");
-    let html = '<h3>Platos</h3><ul>';
+    let html = `<h3>${titulo}</h3><ul>`;
     listadeplatos.forEach(plato => {
         html += `<li>${plato}</li>`;
     });
-    html += '</ul>';
+    html += "</ul>";
+
     output.innerHTML = html;
 }
 //buscar plato por su nombre usando find
@@ -94,8 +114,6 @@ function resumenMenu() {
 
 //Mostrar el resumen
 
-console.log("Resumen del menú:");
-console.log(obtenerResumenMenu());
 
 // VENDER PLATO 
 
@@ -121,7 +139,7 @@ function venderPlato(nombre, cantidad) {
 
     renderMenu();
 }
-console.log(venderPlato());
+
 
 // 4) EVENTOS: conectar botones con funciones
 document.getElementById("btnMostrar").addEventListener("click", () => {
