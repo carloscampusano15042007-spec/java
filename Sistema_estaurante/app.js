@@ -34,9 +34,9 @@ function renderMenu() {
             clase = "normal";
         }
 
-        html += <li class="${clase}">
+        html += `<li class="${clase}">
             ${plato.nombre} - S/ ${plato.precio} - Stock: ${plato.stock}
-        </li>;
+        </li>`;
 
         total += plato.stock;
     }
