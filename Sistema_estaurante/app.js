@@ -1,12 +1,4 @@
-// 1) VARIABLES + OBJETOS + ARRAYS
-let menu = [
-    { nombre: "Arroz con pollo", precio: 12, stock: 5 },
-    { nombre: "Lomo saltado", precio: 18, stock: 3 },
-    { nombre: "Sopa", precio: 8, stock: 10 },
-    { nombre: "Aji de gallina", precio: 11, stock: 6 },
-    { nombre: "Causa", precio: 15, stock: 4 }
 
-];
 
 // 2) FUNCIÓN: renderizar (mostrar) el menú en pantalla
 function renderMenu() {
@@ -56,13 +48,7 @@ function contarplatos() {
     const total = document.getElementById("total");
     total.innerHTML = `Total de platos: ${totalplatos}`;
 }
-// 3) FUNCIÓN: agregar un plato demo al menú
-function agregarPlatoDemo() {
 
-    const nuevoPlato = { nombre: "Ceviche", precio: 35, stock: 10 };
-    menu.push(nuevoPlato);
-
-}
 // crear funcion renderLista
 function renderLista(titulo, listadeplatos) {
     const output = document.getElementById("output");
