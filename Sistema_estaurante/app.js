@@ -230,3 +230,12 @@ document.getElementById("btnBuscar").addEventListener("click", () => {
     buscarplatopornombre(nombre);
 
 });
+
+document.getElementById("btnVender").addEventListener("click", () => {
+
+    const nombre = document.getElementById("nombreVender").value;
+    const cantidad = Number(document.getElementById("cantidadVender").value);
+
+    venderPlato(nombre, cantidad);
+
+});
