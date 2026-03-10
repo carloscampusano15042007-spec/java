@@ -44,6 +44,7 @@ function renderMenu() {
     html += "</ul>";
 
     output.innerHTML = html;
+    verificarEstadoGeneral();
 
 }
 
@@ -178,18 +179,23 @@ function verificarEstadoGeneral() {
 
         if (menu[i].stock === 0) {
             agotados++
-        } else if (menu[i].stock <= 3) {
+        }
+        else if (menu[i].stock <= 3) {
             bajo++
         }
 
     }
 
+    const estado = document.getElementById("estadoGeneral")
+
     if (agotados > 0) {
-        alert("Hay platos agotados")
-    } else if (bajo > 0) {
-        alert("Hay platos con stock bajo")
-    } else {
-        alert("Todo disponible")
+        estado.innerHTML = "⚠ Hay platos agotados"
+    }
+    else if (bajo > 0) {
+        estado.innerHTML = "⚠ Hay platos con stock bajo"
+    }
+    else {
+        estado.innerHTML = "✅ Todo disponible"
     }
 
 }
