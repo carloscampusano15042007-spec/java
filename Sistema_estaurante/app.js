@@ -119,25 +119,52 @@ function resumenMenu() {
 
 function venderPlato(nombre, cantidad) {
 
-    const plato = menu.find(p =>
+    const resultado = menu.filter(p =>
         p.nombre.toLowerCase() === nombre.toLowerCase()
     );
 
-    if (!plato) {
-        alert("Plato no existe");
+    // validar nombre plato
+    if (!nombre) {
+        alert("Debe ingresar el nombre del plato");
         return;
     }
 
-    if (plato.stock < cantidad) {
+    // validar cantidad
+    if (cantidad <= 0) {
+        alert("Cantidad inválida");
+        return;
+    }
+
+    // validar si el plato existe
+    if (resultado.length === 0) {
+        alert("El plato no existe en el menú");
+        return;
+    }
+
+    const plato = resultado[0];
+
+    // validar si está agotado
+    if (plato.stock === 0) {
+        alert("No disponible, plato agotado");
+        return;
+    }
+
+    // validar si hay suficiente stock
+    if (cantidad > plato.stock) {
         alert("Stock insuficiente");
         return;
     }
 
-    plato.stock -= cantidad;
+    // realizar venta
+    plato.stock = plato.stock - cantidad;
 
-    alert("Venta realizada");
+    alert("Venta realizada de " + cantidad + " " + plato.nombre);
 
+    // actualizar menú
     renderMenu();
+
+    // verificar estado general
+    verificarEstadoGeneral();
 }
 
 
