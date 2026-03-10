@@ -1,33 +1,42 @@
 
 import { menu } from "./menu.js";
 
+// Contar total de platos (suma de stock)
 export function contarPlatos() {
     return menu.reduce((total, plato) => total + plato.stock, 0);
 }
 
+
+// Buscar plato por nombre
 export function buscarPlatoPorNombre(nombre) {
     return menu.find(p =>
         p.nombre.toLowerCase() === nombre.toLowerCase()
     );
 }
 
+
+// Filtrar platos con stock bajo
 export function filtrarStockBajo() {
     return menu.filter(plato => plato.stock <= 3);
 }
 
+
+// Obtener resumen del menú
 export function resumenMenu() {
     return menu.map(plato =>
         `${plato.nombre} - S/ ${plato.precio}`
     );
 }
 
-export function venderPlato(nombre, cantidad) {
 
-    const plato = buscarPlatoPorNombre(nombre);
+// Vender plato
+export function venderPlato(nombre, cantidad) {
 
     if (!nombre) return "Debe ingresar el nombre del plato";
 
     if (cantidad <= 0) return "Cantidad inválida";
+
+    const plato = buscarPlatoPorNombre(nombre);
 
     if (!plato) return "El plato no existe";
 
@@ -40,6 +49,8 @@ export function venderPlato(nombre, cantidad) {
     return `Venta realizada de ${cantidad} ${plato.nombre}`;
 }
 
+
+// Calcular estado del plato
 export function calcularEstadoPlato(plato) {
 
     if (plato.stock === 0) return "agotado";
@@ -49,6 +60,8 @@ export function calcularEstadoPlato(plato) {
     return "normal";
 }
 
+
+// Verificar estado general del menú
 export function verificarEstadoGeneral() {
 
     let agotados = 0;
@@ -59,7 +72,6 @@ export function verificarEstadoGeneral() {
         if (menu[i].stock === 0) agotados++;
 
         else if (menu[i].stock <= 3) bajos++;
-
     }
 
     if (agotados > 0) return "⚠ Hay platos agotados";

@@ -8,15 +8,14 @@ import {
     venderPlato,
     calcularEstadoPlato,
     verificarEstadoGeneral
-}
-    from "./operaciones.js";
+} from "./operaciones.js";
 
 
 export function renderMenu() {
 
     const output = document.getElementById("output");
 
-    let html = "<ul>";
+    let html = "<h3>Menú</h3><ul>";
 
     for (let i = 0; i < menu.length; i++) {
 
@@ -25,7 +24,7 @@ export function renderMenu() {
         const clase = calcularEstadoPlato(plato);
 
         html += `<li class="${clase}">
-        ${plato.nombre} - S/ ${plato.precio} - Stock: ${plato.stock}
+            ${plato.nombre} - S/ ${plato.precio} - Stock: ${plato.stock}
         </li>`;
     }
 
@@ -44,9 +43,9 @@ export function renderLista(titulo, lista) {
 
     let html = `<h3>${titulo}</h3><ul>`;
 
-    lista.forEach(item => {
-        html += `<li>${item}</li>`;
-    });
+    for (let i = 0; i < lista.length; i++) {
+        html += `<li>${lista[i]}</li>`;
+    }
 
     html += "</ul>";
 
@@ -99,14 +98,13 @@ export function conectarEventos() {
 
     document.getElementById("btnBuscar").addEventListener("click", () => {
 
-        const nombre = document.getElementById("inputBuscar").value;
+        const nombre = document.getElementById("inputBuscar").value.trim();
 
         const plato = buscarPlatoPorNombre(nombre);
 
         if (!plato) {
 
             renderLista("Resultado", ["No encontrado"]);
-
             return;
         }
 
@@ -120,7 +118,7 @@ export function conectarEventos() {
     document.getElementById("btnVender").addEventListener("click", () => {
 
         const nombre =
-            document.getElementById("nombreVender").value;
+            document.getElementById("nombreVender").value.trim();
 
         const cantidad =
             Number(document.getElementById("cantidadVender").value);
@@ -132,4 +130,5 @@ export function conectarEventos() {
         renderMenu();
 
     });
+
 }
