@@ -1,6 +1,12 @@
 
 import { menu } from "./menu.js";
 
+export function contarplatos() {
+    let totalplatos = menu.reduce((total, plato) => total + plato.stock, 0);
+    console.log("Total de platos: " + totalplatos);
+    const total = document.getElementById("total");
+    total.innerHTML = `Total de platos: ${totalplatos}`;
+}
 //buscar plato por su nombre usando find
 export function buscarplatopornombre(nombre) {
 
