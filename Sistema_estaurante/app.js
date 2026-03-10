@@ -167,6 +167,32 @@ function venderPlato(nombre, cantidad) {
     verificarEstadoGeneral();
 }
 
+// verifica estado general
+
+function verificarEstadoGeneral() {
+
+    let agotados = 0
+    let bajo = 0
+
+    for (let i = 0; i < menu.length; i++) {
+
+        if (menu[i].stock === 0) {
+            agotados++
+        } else if (menu[i].stock <= 3) {
+            bajo++
+        }
+
+    }
+
+    if (agotados > 0) {
+        alert("Hay platos agotados")
+    } else if (bajo > 0) {
+        alert("Hay platos con stock bajo")
+    } else {
+        alert("Todo disponible")
+    }
+
+}
 
 // 4) EVENTOS: conectar botones con funciones
 document.getElementById("btnMostrar").addEventListener("click", () => {
