@@ -1,7 +1,9 @@
 import { conectarEventos, renderMenu } from "./ui.js";
 
-// Iniciar eventos de los botones
-conectarEventos();
+window.addEventListener("DOMContentLoaded", () => {
+    conectarEventos();
+    renderMenu();
 
-// Mostrar menú al cargar la página
-renderMenu();
+});
+
+
