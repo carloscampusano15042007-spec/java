@@ -10,7 +10,7 @@ export function contarPlatos() {
 // Buscar plato por nombre
 export function buscarPlatoPorNombre(nombre) {
     return menu.find(p =>
-        p.nombre.toLowerCase() === nombre.toLowerCase()
+        p.nombre.toLowerCase() === nombre.toLowerCase() && p.stock > 0
     );
 }
 
