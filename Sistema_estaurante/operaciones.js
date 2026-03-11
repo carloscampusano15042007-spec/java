@@ -30,7 +30,7 @@ export function resumenMenu() {
 
 
 // Vender plato
-export function venderPlato(nombre, cantidad) {
+export async function venderPlato(nombre, cantidad) {
 
     if (!nombre) return "Debe ingresar el nombre del plato";
 
@@ -46,9 +46,12 @@ export function venderPlato(nombre, cantidad) {
 
     plato.stock -= cantidad;
 
-    return `Venta realizada de ${cantidad} ${plato.nombre}`;
-}
+    const respuesta = await simularRespuestaServidor(
+        `Venta realizada de ${cantidad} ${plato.nombre}`
+    );
 
+    return respuesta;
+}
 
 // Calcular estado del plato
 export function calcularEstadoPlato(plato) {
