@@ -29,8 +29,8 @@ export function resumenMenu() {
 }
 
 
-// Vender plato
-export async function venderPlato(nombre, cantidad) {
+// Vender plato sincronomo
+export function venderPlato(nombre, cantidad) {
 
     if (!nombre) return "Debe ingresar el nombre del plato";
 
@@ -46,9 +46,25 @@ export async function venderPlato(nombre, cantidad) {
 
     plato.stock -= cantidad;
 
-    const respuesta = await simularRespuestaServidor(
-        `Venta realizada de ${cantidad} ${plato.nombre}`
-    );
+    return `Venta realizada de ${cantidad} ${plato.nombre}`;
+}
+
+// Vender plato asincrónico
+export async function venderPlatoAsync(nombre, cantidad) {
+
+    const resultado = venderPlato(nombre, cantidad);
+
+    if (
+        resultado === "El plato no existe" ||
+        resultado === "Plato agotado" ||
+        resultado === "Stock insuficiente" ||
+        resultado === "Cantidad inválida" ||
+        resultado === "Debe ingresar el nombre del plato"
+    ) {
+        throw new Error(resultado);
+    }
+
+    const respuesta = await simularRespuestaServidor(resultado);
 
     return respuesta;
 }
@@ -82,17 +98,4 @@ export function verificarEstadoGeneral() {
     if (bajos > 0) return "⚠ Hay platos con stock bajo";
 
     return "✅ Todo disponible";
-}
-
-export function simularRespuestaServidor(resultado) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const falla = Math.random() < 0.3;
-            if (falla) {
-                reject("Error del servidor simulado.");
-            } else {
-                resolve(resultado);
-            }
-        }, 2000);
-    });
 }
