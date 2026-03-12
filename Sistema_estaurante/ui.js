@@ -126,6 +126,8 @@ export function conectarEventos() {
         try {
 
             alert("Procesando pedido...");
+            document.getElementById("output").innerHTML = "<h3>⏳ Procesando pedido...</h3>";
+            renderMenu(); // Muestra el cambio de stock antes de esperar la respuesta del servidor
             const mensaje = await venderPlatoAsync(nombre, cantidad);
             alert(mensaje);
 
@@ -134,9 +136,9 @@ export function conectarEventos() {
             alert(error.message);
 
         } finally {
-            
+
             renderMenu();
-            
+
         }
 
 
