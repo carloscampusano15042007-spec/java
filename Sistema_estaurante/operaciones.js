@@ -44,7 +44,7 @@ export function venderPlato(nombre, cantidad) {
 
     plato.stock -= cantidad;
 
-    return `Venta realizada de ${cantidad} ${plato.nombre}`;
+    return `Venta Exitosa de ${cantidad} ${plato.nombre}`;
 }
 
 
