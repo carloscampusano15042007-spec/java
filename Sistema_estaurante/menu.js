@@ -11,7 +11,13 @@ export let menu = [
 // 3) FUNCIÓN: agregar un plato demo al menú
 export function agregarPlatoDemo() {
 
-    const nuevoPlato = { nombre: "Ceviche", precio: 35, stock: 10 };
-    menu.push(nuevoPlato);
+    const platoExistente = menu.find(p => p.nombre.toLowerCase() === "ceviche");
+
+    if (platoExistente) {
+        platoExistente.stock += 10;
+    } else {
+        const nuevoPlato = { nombre: "Ceviche", precio: 35, stock: 10 };
+        menu.push(nuevoPlato);
+    }
 
 }

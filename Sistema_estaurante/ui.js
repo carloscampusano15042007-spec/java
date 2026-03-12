@@ -5,9 +5,10 @@ import {
     buscarPlatoPorNombre,
     filtrarStockBajo,
     resumenMenu,
-    venderPlato,
+    venderPlatoAsync,
     calcularEstadoPlato,
     verificarEstadoGeneral
+
 } from "./operaciones.js";
 
 
@@ -114,8 +115,7 @@ export function conectarEventos() {
 
     });
 
-
-    document.getElementById("btnVender").addEventListener("click", () => {
+    document.getElementById("btnVender").addEventListener("click", async () => {
 
         const nombre =
             document.getElementById("nombreVender").value.trim();
@@ -123,11 +123,24 @@ export function conectarEventos() {
         const cantidad =
             Number(document.getElementById("cantidadVender").value);
 
-        const mensaje = venderPlato(nombre, cantidad);
+        try {
 
-        alert(mensaje);
+            alert("Procesando pedido...");
+            document.getElementById("output").innerHTML = "<h3>⏳ Procesando pedido...</h3>";
+            renderMenu(); // Muestra el cambio de stock antes de esperar la respuesta del servidor
+            const mensaje = await venderPlatoAsync(nombre, cantidad);
+            alert(mensaje);
 
-        renderMenu();
+        } catch (error) {
+
+            alert(error.message);
+
+        } finally {
+
+            renderMenu();
+
+        }
+
 
     });
 

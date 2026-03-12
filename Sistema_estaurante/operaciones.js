@@ -10,7 +10,7 @@ export function contarPlatos() {
 // Buscar plato por nombre
 export function buscarPlatoPorNombre(nombre) {
     return menu.find(p =>
-        p.nombre.toLowerCase() === nombre.toLowerCase() && p.stock > 0
+        p.nombre.toLowerCase() === nombre.toLowerCase()
     );
 }
 
@@ -28,9 +28,7 @@ export function resumenMenu() {
     );
 }
 
-
-// Vender plato
-export async function venderPlato(nombre, cantidad) {
+export function venderPlato(nombre, cantidad) {
 
     if (!nombre) return "Debe ingresar el nombre del plato";
 
@@ -46,11 +44,34 @@ export async function venderPlato(nombre, cantidad) {
 
     plato.stock -= cantidad;
 
-    const respuesta = await simularRespuestaServidor(
-        `Venta realizada de ${cantidad} ${plato.nombre}`
-    );
+    return `Venta Exitosa de ${cantidad} ${plato.nombre}`;
+}
 
-    return respuesta;
+
+// Vender plato asincrónico
+export async function venderPlatoAsync(nombre, cantidad) {
+
+    const resultado = venderPlato(nombre, cantidad);
+    if (
+        resultado === "El plato no existe" ||
+        resultado === "Plato agotado" ||
+        resultado === "Stock insuficiente" ||
+        resultado === "Cantidad inválida" ||
+        resultado === "Debe ingresar el nombre del plato"
+    ) {
+        throw new Error(resultado);
+    }
+
+    try {
+        const respuesta = await simularRespuestaServidor(resultado);
+        return respuesta;
+    } catch (error) {
+        const plato = buscarPlatoPorNombre(nombre);
+        if (plato) {
+            plato.stock += cantidad; // revertimos el descuento de stock
+        }
+        throw new Error(error);
+    }
 }
 
 // Calcular estado del plato
@@ -85,14 +106,21 @@ export function verificarEstadoGeneral() {
 }
 
 export function simularRespuestaServidor(resultado) {
+
     return new Promise((resolve, reject) => {
+
         setTimeout(() => {
+
             const falla = Math.random() < 0.3;
+
             if (falla) {
                 reject("Error del servidor simulado.");
             } else {
                 resolve(resultado);
             }
+
         }, 2000);
+
     });
+
 }
