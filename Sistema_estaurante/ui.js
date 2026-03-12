@@ -5,10 +5,10 @@ import {
     buscarPlatoPorNombre,
     filtrarStockBajo,
     resumenMenu,
-    venderPlato,
     venderPlatoAsync,
     calcularEstadoPlato,
-    verificarEstadoGeneral,
+    verificarEstadoGeneral
+
 } from "./operaciones.js";
 
 
@@ -115,7 +115,6 @@ export function conectarEventos() {
 
     });
 
-
     document.getElementById("btnVender").addEventListener("click", async () => {
 
         const nombre =
@@ -127,17 +126,17 @@ export function conectarEventos() {
         try {
 
             alert("Procesando pedido...");
-
             const mensaje = await venderPlatoAsync(nombre, cantidad);
-
             alert(mensaje);
-
-            renderMenu();
 
         } catch (error) {
 
             alert(error.message);
 
+        } finally {
+            
+            renderMenu();
+            
         }
 
 

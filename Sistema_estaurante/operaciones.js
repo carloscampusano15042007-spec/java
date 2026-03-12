@@ -10,7 +10,7 @@ export function contarPlatos() {
 // Buscar plato por nombre
 export function buscarPlatoPorNombre(nombre) {
     return menu.find(p =>
-        p.nombre.toLowerCase() === nombre.toLowerCase() && p.stock > 0
+        p.nombre.toLowerCase() === nombre.toLowerCase()
     );
 }
 
@@ -28,8 +28,6 @@ export function resumenMenu() {
     );
 }
 
-
-// Vender plato sincronomo
 export function venderPlato(nombre, cantidad) {
 
     if (!nombre) return "Debe ingresar el nombre del plato";
@@ -49,11 +47,11 @@ export function venderPlato(nombre, cantidad) {
     return `Venta realizada de ${cantidad} ${plato.nombre}`;
 }
 
+
 // Vender plato asincrónico
 export async function venderPlatoAsync(nombre, cantidad) {
 
     const resultado = venderPlato(nombre, cantidad);
-
     if (
         resultado === "El plato no existe" ||
         resultado === "Plato agotado" ||
@@ -64,9 +62,16 @@ export async function venderPlatoAsync(nombre, cantidad) {
         throw new Error(resultado);
     }
 
-    const respuesta = await simularRespuestaServidor(resultado);
-
-    return respuesta;
+    try {
+        const respuesta = await simularRespuestaServidor(resultado);
+        return respuesta;
+    } catch (error) {
+        const plato = buscarPlatoPorNombre(nombre);
+        if (plato) {
+            plato.stock += cantidad; // revertimos el descuento de stock
+        }
+        throw new Error(error);
+    }
 }
 
 // Calcular estado del plato
