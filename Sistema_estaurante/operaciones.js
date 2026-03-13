@@ -51,25 +51,26 @@ export function venderPlato(nombre, cantidad) {
 // Vender plato asincrónico
 export async function venderPlatoAsync(nombre, cantidad) {
 
-    const resultado = venderPlato(nombre, cantidad);
-    if (
-        resultado === "El plato no existe" ||
-        resultado === "Plato agotado" ||
-        resultado === "Stock insuficiente" ||
-        resultado === "Cantidad inválida" ||
-        resultado === "Debe ingresar el nombre del plato"
-    ) {
-        throw new Error(resultado);
-    }
+    if (!nombre) throw new ErrorNegocio("Debe ingresar el nombre del plato");
+    if (cantidad <= 0) throw new ErrorNegocio("Cantidad inválida");
+
+    const plato = buscarPlatoPorNombre(nombre);
+    if (!plato) throw new ErrorNegocio("El plato no existe");
+    if (plato.stock === 0) throw new ErrorNegocio("Plato agotado");
+    if (cantidad > plato.stock) throw new ErrorNegocio("Stock insuficiente");
+
+    // Realizar la venta en memoria
+    plato.stock -= cantidad;
+    const mensajeVenta = `Venta Exitosa de ${cantidad} ${plato.nombre}`;
 
     try {
-        const respuesta = await simularRespuestaServidor(resultado);
+        const respuesta = await simularRespuestaServidor(mensajeVenta);
         return respuesta;
     } catch (error) {
-        const plato = buscarPlatoPorNombre(nombre);
-        if (plato) {
-            plato.stock += cantidad; // revertimos el descuento de stock
-        }
+        // En caso de error del servidor, revertir stock
+        plato.stock += cantidad; 
+        
+        // Mantener como "Error" normal para fallos de servidor
         throw new Error(error);
     }
 }
