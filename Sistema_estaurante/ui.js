@@ -124,9 +124,9 @@ export function conectarEventos() {
             Number(document.getElementById("cantidadVender").value);
 
         // -- VALIDACIONES ANTES DE ENVIAR A OPERACIONES -- //
-        
-        if (!nombre) {
-            alert("Advertencia: Debe ingresar el nombre del plato");
+        // 1. Nombre vacío
+        if (nombre) {
+            alert("Advertencia: Nombre inválido");
             return;
         }
 
@@ -138,7 +138,7 @@ export function conectarEventos() {
         const plato = buscarPlatoPorNombre(nombre);
         if (!plato) {
             alert("Advertencia: El plato no existe");
-            return; 
+            return;
         }
 
         if (cantidad > plato.stock) {

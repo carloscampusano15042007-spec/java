@@ -32,7 +32,7 @@ export function venderPlato(nombre, cantidad) {
 
     // Validaciones de tipo de entrada
     if (typeof nombre !== "string" || nombre.trim() === "") {
-        return "El nombre del plato debe ser un texto válido";
+        return "Nombre inválido";
     }
     if (typeof cantidad !== "number" || isNaN(cantidad)) {
         return "La cantidad debe ser un número";
@@ -61,7 +61,7 @@ export async function venderPlatoAsync(nombre, cantidad) {
 
     // Validaciones de tipo de entrada
     if (typeof nombre !== "string" || nombre.trim() === "") {
-        throw new ErrorNegocio("El nombre del plato debe ser un texto válido");
+        throw new ErrorNegocio("Nombre inválido");
     }
     if (typeof cantidad !== "number" || isNaN(cantidad)) {
         throw new ErrorNegocio("La cantidad debe ser un número");
@@ -84,8 +84,8 @@ export async function venderPlatoAsync(nombre, cantidad) {
         return respuesta;
     } catch (error) {
         // En caso de error del servidor, revertir stock
-        plato.stock += cantidad; 
-        
+        plato.stock += cantidad;
+
         // Mantener como "Error" normal para fallos de servidor
         throw new Error(error);
     }
