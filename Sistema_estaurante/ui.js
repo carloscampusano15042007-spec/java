@@ -133,7 +133,11 @@ export function conectarEventos() {
 
         } catch (error) {
 
-            alert(error.message);
+            if (error.name === "ErrorNegocio") {
+                alert("Advertencia: " + error.message);
+            } else {
+                alert("Error del sistema: " + error.message);
+            }
 
         } finally {
 
