@@ -71,9 +71,9 @@ export async function venderPlatoAsync(nombre, cantidad) {
     if (cantidad <= 0) throw new ErrorNegocio("Cantidad inválida");
 
     const plato = buscarPlatoPorNombre(nombre);
-    if (!plato) throw new ErrorNegocio("El plato no existe");
-    if (plato.stock === 0) throw new ErrorNegocio("Plato agotado");
-    if (cantidad > plato.stock) throw new ErrorNegocio("Stock insuficiente");
+    if (!plato) throw new ErrorNegocio(`El plato '${nombre}' no existe en nuestro menú.`);
+    if (plato.stock === 0) throw new ErrorNegocio(`El plato '${plato.nombre}' se encuentra totalmente agotado.`);
+    if (cantidad > plato.stock) throw new ErrorNegocio(`Stock insuficiente. Solo quedan ${plato.stock} unidades de '${plato.nombre}', y pediste ${cantidad}.`);
 
     // Realizar la venta en memoria
     plato.stock -= cantidad;
