@@ -123,6 +123,31 @@ export function conectarEventos() {
         const cantidad =
             Number(document.getElementById("cantidadVender").value);
 
+        // -- VALIDACIONES ANTES DE ENVIAR A OPERACIONES -- //
+        
+        if (!nombre) {
+            alert("Advertencia: Debe ingresar el nombre del plato");
+            return;
+        }
+
+        if (isNaN(cantidad) || cantidad <= 0) {
+            alert("Advertencia: La cantidad debe ser un número mayor a cero");
+            return;
+        }
+
+        const plato = buscarPlatoPorNombre(nombre);
+        if (!plato) {
+            alert("Advertencia: El plato no existe");
+            return; 
+        }
+
+        if (cantidad > plato.stock) {
+            alert("Advertencia: Stock insuficiente en el menú actual");
+            return;
+        }
+
+        // -- FIN VALIDACIONES -- //
+
         try {
 
             alert("Procesando pedido...");
