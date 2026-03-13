@@ -30,6 +30,14 @@ export function resumenMenu() {
 
 export function venderPlato(nombre, cantidad) {
 
+    // Validaciones de tipo de entrada
+    if (typeof nombre !== "string" || nombre.trim() === "") {
+        return "El nombre del plato debe ser un texto válido";
+    }
+    if (typeof cantidad !== "number" || isNaN(cantidad)) {
+        return "La cantidad debe ser un número";
+    }
+
     if (!nombre) return "Debe ingresar el nombre del plato";
 
     if (cantidad <= 0) return "Cantidad inválida";
@@ -50,6 +58,14 @@ export function venderPlato(nombre, cantidad) {
 
 // Vender plato asincrónico
 export async function venderPlatoAsync(nombre, cantidad) {
+
+    // Validaciones de tipo de entrada
+    if (typeof nombre !== "string" || nombre.trim() === "") {
+        throw new ErrorNegocio("El nombre del plato debe ser un texto válido");
+    }
+    if (typeof cantidad !== "number" || isNaN(cantidad)) {
+        throw new ErrorNegocio("La cantidad debe ser un número");
+    }
 
     if (!nombre) throw new ErrorNegocio("Debe ingresar el nombre del plato");
     if (cantidad <= 0) throw new ErrorNegocio("Cantidad inválida");
