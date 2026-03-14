@@ -123,6 +123,31 @@ export function conectarEventos() {
         const cantidad =
             Number(document.getElementById("cantidadVender").value);
 
+        // -- VALIDACIONES ANTES DE ENVIAR A OPERACIONES -- //
+        // 1. Nombre vacío
+        if (nombre) {
+            alert("Advertencia: Nombre inválido");
+            return;
+        }
+
+        if (isNaN(cantidad) || cantidad <= 0) {
+            alert("Advertencia: La cantidad debe ser un número mayor a cero");
+            return;
+        }
+
+        const plato = buscarPlatoPorNombre(nombre);
+        if (!plato) {
+            alert("Advertencia: El plato no existe");
+            return;
+        }
+
+        if (cantidad > plato.stock) {
+            alert("Advertencia: Stock insuficiente en el menú actual");
+            return;
+        }
+
+        // -- FIN VALIDACIONES -- //
+
         try {
 
             alert("Procesando pedido...");
@@ -133,7 +158,11 @@ export function conectarEventos() {
 
         } catch (error) {
 
-            alert(error.message);
+            if (error.name === "ErrorNegocio") {
+                alert("Advertencia: " + error.message);
+            } else {
+                alert("Error del sistema: " + error.message);
+            }
 
         } finally {
 
