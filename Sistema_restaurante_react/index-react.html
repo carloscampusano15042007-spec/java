@@ -14,19 +14,19 @@
     // ¿Cómo se llama la función? ¿Qué recibe? ¿Qué devuelve?
     function renderCarta() {
         return (
-            <div>
+            <>
                 <h2>Carta</h2>
+
                 {platos.map(plato => (
-                    <div key={plato.id}>
+                    <div key={plato.id} className="plato">
                         <h3>Plato: {plato.nombre}</h3>
                         <p>Precio: {plato.precio}</p>
                         <p>Stock: {plato.stock}</p>
-                        <p>{plato.disponible}</p>
+                        <p>{plato.disponible ? "✅ Disponible" : "❌ Agotado"}</p>
                     </div>
                 ))}
 
-
-            </div>
+            </>
         )
     }
 
